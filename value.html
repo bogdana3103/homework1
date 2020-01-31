@@ -1,0 +1,58 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <button id="value-btn">Get</button>
+
+    
+    <div id="container">
+        <table class="table table-striped">
+         <thead>
+         <tr>
+             <th>name</th>
+             <th>val</th>
+             <th>data</th>
+         </tr>
+         </thead>
+         <tbody id="tab">
+           <tr>
+              <td></td>
+           </tr>
+           <br>
+         </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script>
+      $('document').ready(function () {
+          $('#value-btn').click(function () {
+              $.getJSON('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json', (data) => {
+                  let htm = ''
+                  for (let value of data) {
+                      $('#tab').append(`
+                      htm += <tr><td>${value.txt}</td>;
+                      htm += <td>${value.rate}</td>;
+                      htm += <td>${value.exchangedate}</td></tr>;
+                      `)
+                  }
+                  
+              })
+          });
+      });
+
+  </script>
+</body>
+
+</html>
+
+    
+  
+</script>
+</body>
+</html>
